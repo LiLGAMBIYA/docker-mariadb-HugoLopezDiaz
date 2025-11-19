@@ -1,0 +1,57 @@
+# docker-compose.yml (Modificado)
+# Este archivo ahora depende de un Dockerfile ubicado 
+# en la carpeta './docker_php_config'
+
+services:
+  # Servidor web con PHP
+  web:
+    # ✅ CAMBIO AQUÍ: Ya no usa la imagen genérica,
+    # sino que construye la tuya propia desde la carpeta indicada.
+    build: ./docker_php_config
+    container_name: php_web
+    ports:
+      - "8089:80"
+    volumes:
+      - ./proyecto:/var/www/html
+    networks:
+      - lamp_network
+    depends_on:
+      - db
+
+  # Base de datos MariaDB (Sin cambios)
+  db:
+    image: mariadb:10.11
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tienda_frutas
+      MYSQL_USER: alumno
+      MYSQL_PASSWORD: alumno
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - lamp_network
+
+  # phpMyAdmin (Sin cambios)
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - lamp_network
+    depends_on:
+      - db
+
+volumes:
+  mariadb_data:
+
+networks:
+  lamp_network:
+    driver: bridge
