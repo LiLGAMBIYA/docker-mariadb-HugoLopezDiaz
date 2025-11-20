@@ -4,17 +4,16 @@ require 'conexion.php';
 echo "<h1>Instalando Base de Datos</h1>";
 
 try {
-    // Crear Tablas
     $pdo->exec("DROP TABLE IF EXISTS detalles_pedidos, pedidos, productos, usuarios, categorias");
 
-    //Tabla Categorias
+    //Tabla de categorias
     $pdo->exec("CREATE TABLE categorias (
         id INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50) NOT NULL,
         descripcion TEXT
     )");
 
-    //Tabla Usuarios
+    //Tabla usuarios
     $pdo->exec("CREATE TABLE usuarios (
         id INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(100),
@@ -22,7 +21,7 @@ try {
         contrasena VARCHAR(255)
     )");
 
-    //Tabla Productos
+    //Tabla productos
     $pdo->exec("CREATE TABLE productos (
         id INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(100),
@@ -33,7 +32,7 @@ try {
         FOREIGN KEY (categoria_id) REFERENCES categorias(id)
     )");
 
-    //Tabla Pedidos
+    //Tabla pedidos
     $pdo->exec("CREATE TABLE pedidos (
         id INT AUTO_INCREMENT PRIMARY KEY,
         usuario_id INT,
@@ -63,10 +62,10 @@ try {
             ('Pomelo', 1, 1.20, 30),
             ('Mandarina', 1, 1.80, 80),
             ('Fresa', 2, 3.00, 40),
-            ('Arándano', 2, 5.00, 5),  -- Stock bajo (<10) para Ej 3 y 8
+            ('Arándano', 2, 5.00, 5),  
             ('Frambuesa', 2, 4.50, 20),
             ('Plátano', 3, 1.10, 200),
-            ('Mango', 3, 2.50, 0),    -- Stock 0 para Ej 6
+            ('Mango', 3, 2.50, 0),    
             ('Piña', 3, 3.00, 30)";
     $pdo->exec($sql);
 
