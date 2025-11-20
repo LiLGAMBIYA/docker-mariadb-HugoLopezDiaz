@@ -14,7 +14,7 @@ try {
     $producto = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$producto || $producto['stock'] < $cantidad) {
-        throw new Exception("¡Error! Stock insuficiente o producto no disponible.");
+        throw new Exception("Stock insuficiente o producto no disponible.");
     }
 
     $total_pagar = $producto['precio'] * $cantidad;
