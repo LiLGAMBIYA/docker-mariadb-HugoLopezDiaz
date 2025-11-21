@@ -3,7 +3,7 @@ require 'conexion.php';
 echo "<h1>Ejercicio 8</h1>";
 ?>
 
-    <h3>a) Productos mas vendidos</h3>
+    <h3>Productos mas vendidos</h3>
 <?php
 $sql = "SELECT p.nombre, SUM(d.cantidad) as total_vendido
         FROM productos p
@@ -17,7 +17,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
 
-    <h3>b) Ingresos totales posibles por categora</h3>
+    <h3>Ingresos totales posibles por categora</h3>
 <?php
 $sql = "SELECT c.nombre, SUM(p.precio * p.stock) as dinero_en_stock
         FROM categorias c
@@ -31,7 +31,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
 
-    <h3>c)Stock Bajo</h3>
+    <h3>Stock Bajo</h3>
 <?php
 $stmt = $pdo->query("SELECT nombre, stock FROM productos WHERE stock < 10 AND eliminado = 0");
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -39,7 +39,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
 
-    <h3>d) Mayor compras</h3>
+    <h3>Mayor compras</h3>
 <?php
 $sql = "SELECT u.nombre, COUNT(p.id) as num_pedidos
         FROM usuarios u

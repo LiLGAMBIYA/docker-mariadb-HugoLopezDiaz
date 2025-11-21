@@ -1,6 +1,6 @@
 <?php
 require 'conexion.php';
-echo "<h1>Ejercicios 5 y 6</h1>";
+echo "<h1>Ejercicio 5 y 6</h1>";
 
 try {
     $pdo->beginTransaction();
@@ -10,7 +10,7 @@ try {
     $stmt->execute([$cat_id]);
     echo "<p>Precios actualizados (subida 10%).</p>";
 
-    $prod_id = 4; //mandarina
+    $prod_id = 4;
     $cantidad_a_restar = 5;
 
     $check = $pdo->prepare("SELECT stock FROM productos WHERE id = ?");
@@ -31,7 +31,7 @@ try {
     $sql_borrar = "UPDATE productos SET eliminado = 1 WHERE stock = 0";
     $stmt = $pdo->query($sql_borrar);
 
-    echo "<p>🗑️ Productos eliminados (lógicamente): " . $stmt->rowCount() . "</p>";
+    echo "<p>Productos eliminados: " . $stmt->rowCount() . "</p>";
 
     echo "<h4>Lista actual:</h4>";
     $ver = $pdo->query("SELECT nombre FROM productos WHERE eliminado = 0");

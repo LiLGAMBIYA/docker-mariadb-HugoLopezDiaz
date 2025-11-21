@@ -3,7 +3,7 @@ require 'conexion.php';
 echo "<h1>Ejercicio 7</h1>";
 
 $id_usuario = 1;
-$id_producto = 1; // Naranja
+$id_producto = 1;
 $cantidad = 10;
 
 try {

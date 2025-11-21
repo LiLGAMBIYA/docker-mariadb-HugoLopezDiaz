@@ -2,7 +2,7 @@
 require 'conexion.php';
 ?>
 
-<h3>a) Productos por precio de menor a mayor</h3>
+<h3>Productos por precio de menor a mayor</h3>
 <ul>
     <?php
     $stmt = $pdo->query("SELECT nombre, precio FROM productos ORDER BY precio ASC");
@@ -12,7 +12,7 @@ require 'conexion.php';
     ?>
 </ul>
 
-<h3>b) Produtos de una categoria</h3>
+<h3>Produtos de una categoria</h3>
 <?php
 $id_categoria = 1;
 $stmt = $pdo->prepare("SELECT nombre FROM productos WHERE categoria_id = ?");
@@ -23,7 +23,7 @@ while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
 
-<h3>c) Productos con stock bajo</h3>
+<h3>Productos con stock bajo</h3>
 <?php
 $limite = 20;
 $stmt = $pdo->prepare("SELECT nombre, stock FROM productos WHERE stock < ?");
